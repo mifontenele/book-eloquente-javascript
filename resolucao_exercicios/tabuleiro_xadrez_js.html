@@ -1,0 +1,64 @@
+<!-- TABULEIRO DE XADREZ: 
+Escreva um programa que cria uma string que representa uma grade 8x8, usando novas linhas para separar os caracteres. 
+A cada posição da grade existe um espaço ou um caractere "#". Esses caracteres formam um tabuleiro de xadrez.
+Passando esta string para o console.log deve mostrar algo como isto:
+
+  # # # #
+   # # # #
+  # # # #
+   # # # #
+  # # # #
+   # # # #
+  # # # #
+   # # # #
+
+Quando você tiver o programa que gere este padrão, defina a variável size = 8 e altere programa para que ele funcione para qualquer size, 
+a saída da grade de largura e altura.
+
+Dica: 
+A sequência pode ser construída iniciando vazia ("") e repetidamente adicionando caracateres. 
+O caracter para uma nova linha é escrito assim \n.
+Utilize console.log para visualizar a saída do seu programa.
+Para trabalhar com duas dimensões, você irá precisar de um loop dentro de outro loop. 
+Coloque entre chaves os "corpos" dos loops para se tornar mais fácil de visualizar quando inicia e quando termina. 
+Tente recuar adequadamente esses "corpos". A ordem dos loops deve seguir a ordem que usamos para construir a string (linha por linha, esquerda para direita, cima para baixo). Então o loop mais externo manipula as linhas e o loop interno manipula os caracteres por linha.
+Você vai precisar de duas variáveis para acompanhar seu progresso. 
+Para saber se coloca um espaço ou um "#" em uma determinada posição, você pode testar se a soma dos dois contadores ainda é divisível por (% 2).
+Encerrando uma linha com um caracter de nova linha acontece após a linha de cima ser construída, faça isso após o loop interno, mas dentro do loop externo. -->
+
+<script>
+    const tamanho = 8;
+    let xadrez = "";
+
+    for (linha = 1; linha <= tamanho; linha = linha + 1) {
+
+        for (let coluna = 1; coluna <= tamanho; coluna = coluna + 1) {
+            if ((linha + coluna) % 2 === 0) {
+                xadrez = xadrez + "X";
+            } else {
+                xadrez = xadrez + "  ";
+            }
+        }
+        xadrez = xadrez + "\n";
+    }
+    console.log(xadrez)
+    
+</script>
+
+<!-- 
+Explicando a resolução:
+
+1) O tabuleiro (8x8) ou seja, 8 linhas e 8 colunas. 
+Foi utilizado dois FOR para poder percorrer na sequencia de cada linha (1º) que deveria percorrer todas as 8 colunas (2º FOR)
+
+2) Usando a dica do enunciando, foi estabelecido um padrão baseado na posição (casas) do tabuleiro.
+Assi, o programa foi instruído a verificar se a soma dos numeros atribuídos às linhas e colunas eram divíveis por 2, 
+por exemplo, no caso da Linha 1 e Coluna 1: (1 + 1) % 2 === 0; >> true
+por exemplo, no caso da Linha 1 e Coluna 2: (1 + 2) % 3 === 0; >> false
+Quando o resultado era TRUE o programa atribuía o "X", quando era FALSE o programa atribuía o " " (espaço).
+
+3) Entendendo o uso do "\n": A cada verificação do FOR, ou seja, depois de percorrer todas as colunas da 1ª linha e atribuir os valores definidos pelo IF, 
+o programa vai iniciar a segunda rodada do FOR na linha de baixo, ou seja, vai percorrer todas as colunas da linha 2, resolver o IF, 
+e depois vai imprimir o resultado e pulando a linha novamente para iniciar a 3ª rodada e assim percorrer todas as 8 linhas).
+Se não tivesse o "\n" a impressão de todos os consoles seria feita numa linha só.
+-->
